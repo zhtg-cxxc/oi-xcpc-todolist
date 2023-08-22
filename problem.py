@@ -3,7 +3,7 @@ from function import Problem
 
 def load():
 	try:
-		file = open('problem.yml', 'r+', encoding='utf8')
+		file = open('config/problem.yml', 'r+', encoding='utf8')
 		text = file.read()
 		data = yaml.load(text)
 		result = [ Problem(**it) for it in data ]
@@ -16,7 +16,7 @@ def dump(data):
 	for it in data:
 		result.append(it.to_dict())
 	text = yaml.dump(result)
-	file = open('problem.yml', 'w+', encoding='utf8')
+	file = open('config/problem.yml', 'w+', encoding='utf8')
 	file.write(text)
 	
 def append(val):
@@ -51,4 +51,4 @@ def move_down(id):
 if __name__ == '__main__':
 	append(Problem(id='LG1000'))
 	for it in load():
-		print(it);
+		print(it)

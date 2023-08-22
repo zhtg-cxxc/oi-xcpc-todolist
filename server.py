@@ -4,7 +4,7 @@ from function import *
 import user
 import config
 import problem
-import spider
+import spider.spider as spider
 
 from flask import Flask
 from flask import request
