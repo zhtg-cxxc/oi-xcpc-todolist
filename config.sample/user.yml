@@ -1,18 +1,8 @@
-- name: memset0
+- name: zhtg
   account:
-  - site: uoj
-    id: memset0
-  - site: loj
-    id: memset0
-- name: sooke
+  - site: luogu
+    id: "66715"
+- name: a_yong
   account:
-  - site: uoj
-    id: sooke
-  - site: loj
-    id: sooke
-- name: zx2003
-  account:
-  - site: uoj
-    id: zx2003
-  - site: loj
-    id: zx2003
+  - site: luogu
+    id: "275192"
