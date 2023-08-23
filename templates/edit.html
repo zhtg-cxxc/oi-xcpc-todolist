@@ -44,6 +44,7 @@
       <table class="m-table">
         <thead>
           <tr>
+            <th></th>
             <th><a href="#" role="button" aria-pressed="true" class="btn btn-primary m-display-max">ID</a></th>
             <th><a href="#" role="button" aria-pressed="true" class="btn btn-primary m-display-max">题目</a></th>
             {%- for user in users -%}
@@ -54,6 +55,11 @@
         <tbody>
           {%- for list in lists -%}
           <tr>
+            <th>
+              <button class="btn btn-icon btn-danger" type="button" onclick="delete_problem({{ list.index }})">
+                <span class="btn-inner--icon"><i class="ni ni-fat-remove"></i></span>
+              </button>
+            </th>
             <th><a href="#" role="button" aria-pressed="true" class="btn btn-secondary m-display-max">{{ list.id }}</a></th>
             <th><a href="{{ list.url }}" role="button" aria-pressed="true" target="_blank" class="btn btn-secondary m-display-max">{{ list.name }}</a></th>
             {%- for user in list.status -%}
@@ -71,7 +77,18 @@
       </table>
     </div>
     <div class="col col-12">
-      <p><center><a href="https://github.com/zhtg-cxxc/oi-xcpc-todolist">oi-xcpc-todolist</a> by <a href="https://zhtg.net.cn">zhtg</a>.</center></p>
+      <form class="shadow m-tools"><textarea class="form-control" id="add-problem-textarea" rows="3"></textarea></form>
+      <button class="btn btn-icon btn-3 btn-primary btn-block shadow m-tools" type="button" id="add-problem-button">
+        <span class="btn-inner--icon"><i class="ni ni-send"></i></span>
+        <span class="btn-inner--text">提交</span>
+      </button>
+      <!-- <div class="m-tags">
+        <button type="button" class="btn btn-secondary btn-sm">TAG1</button>
+        <button type="button" class="btn btn-secondary btn-sm">TAG2</button>
+        <button type="button" class="btn btn-secondary btn-sm">TAG3</button>
+        <button type="button" class="btn btn-secondary btn-sm">TAG4</button>
+        <button type="button" class="btn btn-secondary btn-sm">TAG5</button>
+      </div> -->
     </div>
   </div>
 </div>
