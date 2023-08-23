@@ -3,20 +3,21 @@ from function import Problem
 
 def load():
 	try:
-		file = open('config/problem.yml', 'r+', encoding='utf8')
+		file = open('config/problem.yml', 'r+', encoding='utf-8')
 		text = file.read()
-		data = yaml.load(text)
+		data = yaml.load(text, yaml.FullLoader)
 		result = [ Problem(**it) for it in data ]
 		return result
 	except:
+		raise
 		return []
 
 def dump(data):
 	result = []
 	for it in data:
 		result.append(it.to_dict())
-	text = yaml.dump(result)
-	file = open('config/problem.yml', 'w+', encoding='utf8')
+	text = yaml.dump(result, encoding='utf-8')
+	file = open('config/problem.yml', 'wb')
 	file.write(text)
 	
 def append(val):

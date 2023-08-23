@@ -13,6 +13,7 @@ import requests
 
 from spider.loj import Spider_LOJ
 from spider.uoj import Spider_UOJ
+from spider.luogu import Spider_Luogu
 
 SPIDERS = []
 AVAI_SPIDERS = {}
@@ -33,23 +34,23 @@ def download_problem_list():
 	e_info('downloading problem list, it may take a bit time')
 	result = dict()
 	for si in SPIDERS:
-		si.get_problem_list()
+		result.update(si.get_problem_list())
 	e_info('downloaded problem list')
 	return result
 
 def get_problem_list():
 	if os.path.isfile('config/problem_list.yml'):
-		result = yaml.load(open('config/problem_list.yml', 'r+', encoding='utf8').read())
+		result = yaml.load(open('config/problem_list.yml', 'r+', encoding='utf-8').read(), yaml.FullLoader)
 		return result
 	else:
 		e_warning('problem list cache has not found, will be downloaded')
 		result = download_problem_list()
-		open('config/problem_list.yml', 'w+', encoding='utf8').write(yaml.dump(result))
+		open('config/problem_list.yml', 'wb').write(yaml.dump(result, encoding='utf-8'))
 		return result
 
 def get_url(name):
 	key, val = name.split(' #')
-	return PROB_URL[key] % val
+	return PROB_URL[key].format(id=val)
 
 def get_user_set():
 	e_info('downloading user set')
@@ -62,15 +63,16 @@ def get_user_set():
 def spider_init():
 	global SPIDERS, AVAI_SPIDERS, PROB_URL
 	SPIDERS = [
-		Spider_LOJ(),
-		Spider_UOJ()
+		#Spider_LOJ(),
+		#Spider_UOJ()
+		Spider_Luogu()
 	]
 
 	AVAI_SPIDERS = {}
 	PROB_URL = {}
 	for si in SPIDERS:
 		AVAI_SPIDERS[si.CONFIG_NAME] = si
-		PROB_URL[si.OJ_NAME] = os.path.join(si.BASE_URL, si.PROBLEM_URL) 
+		PROB_URL[si.OJ_NAME] = si.BASE_URL + si.PROBLEM_URL
 	
 spider_init()
 if __name__ == '__main__':

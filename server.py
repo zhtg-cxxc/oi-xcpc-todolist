@@ -1,4 +1,5 @@
 import re
+import json
 
 from function import *
 import user
@@ -27,6 +28,7 @@ def download_user_set():
 def download_problem_name():
     global name_set
     name_set = spider.download_problem_list()
+    open('config/problem_list.yml', 'wb').write(yaml.dump(name_set, encoding='utf-8'))
     return ''
 
 @app.route('/api/delete_problem', methods=['POST'])

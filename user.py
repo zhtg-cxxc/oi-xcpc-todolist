@@ -2,7 +2,7 @@ import yaml
 from function import User, Account
 
 def load():
-	text = open('config/user.yml', 'r+', encoding='utf8')
+	text = open('config/user.yml', 'r+', encoding='utf-8')
 	data = yaml.load(text, yaml.FullLoader)
 	result = [
 		User(**it) if type(it) == dict else it

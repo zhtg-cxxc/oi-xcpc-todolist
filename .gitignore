@@ -1,8 +1,5 @@
 config/
-user.yml
-config.yml
-problem.yml
-problem_list.yml
+debug/
 
 .DS_Store
 desktop.ini
