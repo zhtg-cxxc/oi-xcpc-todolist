@@ -23,8 +23,8 @@ class Spider_Luogu(Spider):
 		req = request_get(self.BASE_URL + '/problem/list')
 		req.encoding = 'utf-8'
 		decode_json = self.luogu_deqoute(req.text)["currentData"]["problems"]
-		#max_page = (decode_json["count"] + decode_json["perPage"] - 1) // decode_json["perPage"]
-		max_page = 1
+		max_page = (decode_json["count"] + decode_json["perPage"] - 1) // decode_json["perPage"]
+		#max_page = 1
 		result = self.split_problem_list(req.text)
 		for page in range(2, max_page + 1):
 			time.sleep(0.1)
